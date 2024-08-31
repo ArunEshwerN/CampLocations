@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search - Camp Locations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search.css') }}" />
+
+</head>
+
+<body>
+    <header>
+        <img src="/static/Camp-Curlies-Tents-1.jpg" alt="logo" width="50" height="50">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="{{ url_for('indexpage') }}">Home</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <i></i>
+            <i></i>
+        </div>
+    </header>
+    <section>
+        <br>
+        <div>
+            <h1>Welcome to Camp Locations!</h1>
+            <div class="container">
+                <!-- Added an id to the input for easy selection -->
+                <input id="searchbar" onkeyup="searchCampgrounds()" type="text" name="search"
+                    placeholder="Search Locations..">
+            </div>
+            <p>View our hand-picked campgrounds or add your own.</p>
+            <a href="{{ url_for('new_camp') }}">Or add your own campground</a>
+        </div>
+    </section>
+    <section>
+        <div>
+            <div id="camp1"> <!-- Added an id for easy access in JavaScript -->
+                <h2>Yercaud</h2>
+                <img src="/static/Yercaud-12_dec.webp" alt="" width="750">
+                <p>Shevroy Hill range, Bear Cave, Lady Seat, and Killiyur Falls are the popular places to trek and hike
+                    in Yercaud.</p>
+                <a href="{{ url_for('viewpage') }}">View Campground</a>
+            </div>
+            <div id="camp2"> <!-- Added an id for easy access in JavaScript -->
+                <h2>Gingee Fort</h2>
+                <img src="/static/Gingee-Fort-12_dec.webp" alt="" width="750">
+                <p>Settled in Villupuram district in Pondicherry, Gingee Fort, built by the Chola Dynasty is an
+                    astounding place one can choose for trekking near Chennai.</p>
+                <a href="{{ url_for('viewpage') }}">View Campground</a>
+            </div>
+            <div id="camp3"> <!-- Added an id for easy access in JavaScript -->
+                <h2>Marina Beach</h2>
+                <img src="/static/caption.jpg" alt="" width="750">
+                <p>This is one of the best beach camping sites, beautiful and pristine.</p>
+                <a href="{{ url_for('viewpage') }}">View Campground</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for search functionality -->
+    <script>
+        function searchCampgrounds() {
+            var searchInput = document.getElementById('searchbar').value.toLowerCase();
+
+            // Get campground elements
+            var camp1 = document.getElementById('camp1');
+            var camp2 = document.getElementById('camp2');
+            var camp3 = document.getElementById('camp3');
+
+            // Get the text content of campgrounds
+            var camp1Text = camp1.textContent.toLowerCase();
+            var camp2Text = camp2.textContent.toLowerCase();
+            var camp3Text = camp3.textContent.toLowerCase();
+
+            // Check if the search input is present in the text content
+            camp1.style.display = camp1Text.includes(searchInput) ? 'block' : 'none';
+            camp2.style.display = camp2Text.includes(searchInput) ? 'block' : 'none';
+            camp3.style.display = camp3Text.includes(searchInput) ? 'block' : 'none';
+        }
+    </script>
+</body>
+
+</html>

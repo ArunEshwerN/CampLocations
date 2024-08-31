@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Comment - Camp Locations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/new_comment.css') }}" />
+</head>
+
+<body>
+    <header>
+        <img src="/static/Camp-Curlies-Tents-1.jpg" alt="logo" width="50" height="50">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="{{ url_for('indexpage') }}">Home</a></li>
+                    <li><a href="{{ url_for('searchpage') }}">Search</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <i></i>
+            <i></i>
+        </div>
+    </header>
+    <section>
+        <form id="commentForm" action="">
+            <h1>Add New Comment</h1>
+            <span>
+                <label for="commentDescription">Description</label>
+                <textarea id="commentDescription" name="description" rows="10"
+                    placeholder="This was probably the best camp I've visited this past year, definitely recommend visiting any time soon."></textarea>
+            </span>
+            <button type="submit">Post Comment</button>
+        </form>
+    </section>
+    <footer></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const commentForm = document.getElementById('commentForm');
+            const commentDescription = document.getElementById('commentDescription');
+
+            commentForm.addEventListener('submit', function (event) {
+                // Comment form validation logic
+                if (!validateCommentForm()) {
+                    event.preventDefault();
+                }
+            });
+
+            // Additional features/functions can be added here
+
+            function validateCommentForm() {
+                // Implement your comment form validation logic here
+                // Return true if validation passes, false otherwise
+                return true;
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View - Camp Locations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/view.css') }}" />
+
+    <!-- Additional CSS for features -->
+    <style>
+        /* Night Mode Styles */
+        .night-mode {
+            background-color: #333;
+            color: white;
+        }
+
+        .night-mode header,
+        .night-mode footer {
+            background-color: #222;
+        }
+
+        .night-mode a {
+            color: #4DD0E1;
+        }
+
+        /* Styles for the search input and toggle buttons */
+        #searchInput,
+        button {
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="/static/Camp-Curlies-Tents-1.jpg" alt="logo" width="50" height="50">
+        <div>
+            <div>
+                <ul>
+                    <li><a href="{{ url_for('indexpage') }}">Home</a></li>
+                    <li><a href="{{ url_for('searchpage') }}">Search</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div>
+            <i></i>
+            <i></i>
+        </div>
+    </header>
+    <div>
+        <!-- Search Filter -->
+        <input type="text" id="searchInput" onkeyup="filterComments()" placeholder="Search for comments...">
+
+        <!-- Toggle Comments Button -->
+        <button onclick="toggleComments()">Toggle Comments</button>
+
+        <!-- Night Mode Toggle -->
+        <button onclick="toggleNightMode()">Toggle Night Mode</button>
+
+        <section>
+            <div>
+                <h1>Yercaud</h1>
+                <p>Shevroy Hill range, Bear Cave, Lady Seat, and Killiyur Falls are the popular places to trek and hike
+                    in Yercaud. Surrounded by the opulent Eastern Ghats; Yeracaud is amongst the most scenic options for
+                    trekking near Chennai. Not only it offers spellbinding views but trekking through dense forests
+                    gives you an adrenaline rush like never before. You can even pitch your tent and enjoy camping
+                    there.</p>
+                <ul>
+                    <li>Distance from Chennai: 267 km</li>
+                    <li>Trekking days:</li>
+                    <li>Altitude: 1623 m</li>
+                    <li>Difficulty level: Easy to Moderate</li>
+                </ul>
+                <p>Submitted by Anand</p>
+            </div>
+            <div id="commentsSection">
+                <!-- Comments content will be dynamically added here -->
+                <!-- ... [comments content] ... -->
+                <div>
+                    <div>
+                        <h1>Anonymous Explorer</h1>
+                        <p>3 days ago</p>
+                    </div>
+                    <p>Highly recommend this camping location! It's a hidden gem with minimal crowds, perfect for a
+                        peaceful getaway.</p>
+                    <span>🌲</span>
+                </div>
+                <div>
+                    <div>
+                        <h1>Jane Smith</h1>
+                        <p>1 day ago</p>
+                    </div>
+                    <p>Had a fantastic time here with friends. The campgrounds are well-maintained, and the surrounding
+                        nature is stunning.</p>
+                    <span>🏕️</span>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript for added features -->
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const comments = document.getElementById('commentsSection').children;
+
+            for (let i = 0; i < comments.length; i++) {
+                const commentText = comments[i].innerText.toLowerCase();
+                if (commentText.includes(searchTerm)) {
+                    comments[i].style.display = ''; // Show the comment
+                } else {
+                    comments[i].style.display = 'none'; // Hide the comment
+                }
+            }
+        });
+
+
+        // Function to toggle the display of comments
+        function toggleComments() {
+            var comments = document.getElementById("commentsSection");
+            var displayValue = window.getComputedStyle(comments).getPropertyValue("display");
+
+            if (displayValue === "none" || displayValue === "") {
+                comments.style.display = "block";
+            } else {
+                comments.style.display = "none";
+            }
+        }
+
+        // Function to toggle night mode
+        function toggleNightMode() {
+            var body = document.body;
+            body.classList.toggle("night-mode");
+        }
+    </script>
+</body>
+
+</html>
